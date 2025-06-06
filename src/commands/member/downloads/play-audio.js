@@ -4,7 +4,7 @@ const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
 
 module.exports = {
   name: "play-audio",
-  description: "Faço o download de músicas",
+  description: "Descargo música",
   commands: ["play-audio", "play", "pa"],
   usage: `${PREFIX}play-audio MC Hariel`,
   /**
@@ -19,25 +19,26 @@ module.exports = {
     sendSuccessReact,
     sendErrorReply,
   }) => {
+    const apiKey = process.env.PLAY_AUDIO_API_KEY;
     if (!fullArgs.length) {
       throw new InvalidParameterError(
-        "Você precisa me dizer o que deseja buscar!"
+        "¡Necesitas decirme qué quieres buscar!"
       );
     }
 
     if (fullArgs.includes("http://") || fullArgs.includes("https://")) {
       throw new InvalidParameterError(
-        `Você não pode usar links para baixar músicas! Use ${PREFIX}yt-mp3 link`
+        `¡No puedes usar enlaces para descargar música! Usa ${PREFIX}yt-mp3 link`
       );
     }
 
     await sendWaitReact();
 
     try {
-      const data = await play("audio", fullArgs);
+      const data = await play("audio", fullArgs, apiKey);
 
       if (!data) {
-        await sendErrorReply("Nenhum resultado encontrado!");
+        await sendErrorReply("¡No se encontraron resultados!");
         return;
       }
 
@@ -47,8 +48,8 @@ module.exports = {
         data.thumbnail,
         `*Título*: ${data.title}
         
-*Descrição*: ${data.description}
-*Duração em segundos*: ${data.total_duration_in_seconds}
+*Descripción*: ${data.description}
+*Duración en segundos*: ${data.total_duration_in_seconds}
 *Canal*: ${data.channel.name}`
       );
 

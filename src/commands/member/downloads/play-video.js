@@ -4,7 +4,7 @@ const { InvalidParameterError } = require(`${BASE_DIR}/errors`);
 
 module.exports = {
   name: "play-video",
-  description: "Faço o download de vídeos",
+  description: "Descargo videos",
   commands: ["play-video", "pv"],
   usage: `${PREFIX}play-video MC Hariel`,
   /**
@@ -19,25 +19,26 @@ module.exports = {
     sendSuccessReact,
     sendErrorReply,
   }) => {
+    const apiKey = process.env.PLAY_VIDEO_API_KEY;
     if (!fullArgs.length) {
       throw new InvalidParameterError(
-        "Você precisa me dizer o que deseja buscar!"
+        "¡Necesitas decirme qué quieres buscar!"
       );
     }
 
     if (fullArgs.includes("http://") || fullArgs.includes("https://")) {
       throw new InvalidParameterError(
-        `Você não pode usar links para baixar vídeos! Use ${PREFIX}yt-mp4 link`
+        `¡No puedes usar enlaces para descargar videos! Usa ${PREFIX}yt-mp4 link`
       );
     }
 
     await sendWaitReact();
 
     try {
-      const data = await play("video", fullArgs);
+      const data = await play("video", fullArgs, apiKey);
 
       if (!data) {
-        await sendErrorReply("Nenhum resultado encontrado!");
+        await sendErrorReply("¡No se encontraron resultados!");
         return;
       }
 
@@ -47,8 +48,8 @@ module.exports = {
         data.thumbnail,
         `*Título*: ${data.title}
         
-*Descrição*: ${data.description}
-*Duração em segundos*: ${data.total_duration_in_seconds}
+*Descripción*: ${data.description}
+*Duración en segundos*: ${data.total_duration_in_seconds}
 *Canal*: ${data.channel.name}`
       );
 

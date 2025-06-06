@@ -44,6 +44,9 @@ exports.SPIDER_API_BASE_URL = "https://api.spiderx.com.br/api";
 // Obtenha seu token, criando uma conta em: https://api.spiderx.com.br.
 exports.SPIDER_API_TOKEN = "seu_token_aqui";
 
+exports.PLAY_AUDIO_API_KEY = process.env.PLAY_AUDIO_API_KEY || "tu_clave_api_play_audio_aqui";
+exports.PLAY_VIDEO_API_KEY = process.env.PLAY_VIDEO_API_KEY || "tu_clave_api_play_video_aqui";
+
 // Caso queira responder apenas um grupo específico, coloque o ID dele aqui (ex: 120363023799506419@g.us).
 // Para saber o ID do grupo, use o comando <prefixo>getid
 // Troque o <prefixo> pelo prefixo do bot (ex: /getid).
