@@ -46,6 +46,8 @@ exports.SPIDER_API_TOKEN = "seu_token_aqui";
 
 exports.PLAY_AUDIO_API_KEY = process.env.PLAY_AUDIO_API_KEY || "tu_clave_api_play_audio_aqui";
 exports.PLAY_VIDEO_API_KEY = process.env.PLAY_VIDEO_API_KEY || "tu_clave_api_play_video_aqui";
+exports.OCEANSAVER_API_KEY = process.env.OCEANSAVER_API_KEY || "tu_clave_api_oceansaver_aqui";
+exports.ZENKEY_API_KEY = process.env.ZENKEY_API_KEY || "zenkey"; // Defaulting to 'zenkey' as per user's original code if no env var
 
 // Caso queira responder apenas um grupo específico, coloque o ID dele aqui (ex: 120363023799506419@g.us).
 // Para saber o ID do grupo, use o comando <prefixo>getid
